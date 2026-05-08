@@ -38,6 +38,7 @@ class PacketAnalyzer:
     def __init__(self, writer: PcapNgWriter=None):
         self.writer = writer
         self.count = 0
+        self.packet_infos = []
     
     @staticmethod
     def get_wire_length(packet: Packet):
@@ -133,13 +134,12 @@ class PacketAnalyzer:
                 else:
                     info = "Membership Report, IGMPv3"
         
-        #packet_info = f"Num: {self.count}, Source: {src}, Destination: {dst}, Protocol: {proto}, Length: {wire_length}, Info: {info}"
-        packet_info = {"Num": self.count, "Source": src, "Destination": dst, "Protocol": proto, "Length": wire_length, "Info": info}
+        packet_info = [str(self.count), src, dst, proto, str(wire_length), info]
         return packet_info
 
     def callback(self, packet: Packet):
         packet_info = self.get_packet_infomation(packet)
-        print(packet_info)
+        self.packet_infos.append(packet_info)
 
         # Write the packet to the file
         self.writer.write(packet)
@@ -152,24 +152,17 @@ class PacketAnalyzer:
         }
         return types.get(type_val, "Unknown")
 
-    def get_data_of_pcapng_file(self, pcapng_file_path: str) -> dict[str, Any]:
-        packet_data: dict[str, Any] = {}
-        packet_data["Num"] = []
-        packet_data["Source"] = []
-        packet_data["Destination"] = []
-        packet_data["Protocol"] = []
-        packet_data["Length"] = []
-        packet_data["Info"] = []
+    def get_data_of_pcapng_file(self, pcapng_file_path: str) -> list:
+        packet_data = []
 
         with PcapNgReader(pcapng_file_path) as pcap_reader:
             for packet in pcap_reader:
                 packet_info = self.get_packet_infomation(packet)
-
-                packet_data["Num"].append(packet_info["Num"])
-                packet_data["Source"].append(packet_info["Source"])
-                packet_data["Destination"].append(packet_info["Destination"])
-                packet_data["Protocol"].append(packet_info["Protocol"])
-                packet_data["Length"].append(packet_info["Length"])
-                packet_data["Info"].append(packet_info["Info"])
+                
+                row = [packet_info[0], packet_info[1], packet_info[2], packet_info[3], packet_info[4], packet_info[5]]
+                packet_data.append(row)
     
         return packet_data
+    
+    def get_packet_infos(self) -> list:
+        return self.packet_infos 
