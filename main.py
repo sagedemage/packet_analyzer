@@ -43,7 +43,18 @@ class MainWindow(QMainWindow):
         self.table_view.verticalHeader().setVisible(False)
 
         # Set headers
-        self.model.setHorizontalHeaderLabels(["Num", "Source", "Destination", "Protocol", "Length", "Info"])
+        self.model.setHorizontalHeaderLabels([
+            "Num",
+            "Timestamp",
+            "Protocol",
+            "Source",
+            "Destination",
+            "TCP Flags",
+            "Seq Number",
+            "Ack Number",
+            "Window Size",
+            "Length"
+            ])
         
         # Adjust column widths
         self.table_view.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
