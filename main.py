@@ -43,7 +43,6 @@ class MainWindow(QMainWindow):
         self.table_view.verticalHeader().setVisible(False)
 
         # Set headers
-        # Num, Timestamp, Protocol, Source, Destination, TCP Flags, Seq Number, Ack Number, Window Size, Length
         self.model.setHorizontalHeaderLabels([
             "Num",
             "Timestamp",

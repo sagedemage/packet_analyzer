@@ -85,7 +85,6 @@ class PacketAnalyzer:
         if packet.haslayer(IGMPv3):
             proto = "IGMPv3"
 
-        # Num, Timestamp, Protocol, Source, Destination, TCP Flags, Seq Number, Ack Number, Window Size, Length
         packet_info = [
             str(self.count),
             str(timestamp),
@@ -113,7 +112,6 @@ class PacketAnalyzer:
             for packet in pcap_reader:
                 packet_info = self.get_packet_infomation(packet)
                 
-                # Num, Timestamp, Protocol, Source, Destination, TCP Flags, Seq Number, Ack Number, Window Size, Length
                 row = [
                     packet_info[0],
                     packet_info[1],
