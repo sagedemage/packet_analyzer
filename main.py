@@ -4,7 +4,6 @@ import sys
 
 def check_interface_exists(iface_name: str):
     try:
-        # Try to get hardware address
         get_if_hwaddr(iface_name)
         return True
     except ValueError:
