@@ -25,7 +25,6 @@ def open_pcapng_file():
 def main():
     if len(sys.argv) > 1:
         flag = sys.argv[1]
-        print(flag)
 
         match flag:
             case "sniff":
