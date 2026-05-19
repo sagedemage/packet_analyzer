@@ -37,7 +37,7 @@ class PacketAnalyzer:
         proto = "N/A"
         wire_length = self.get_wire_length(packet)
         window_size = "N/A"
-        packet_time = packet.time
+        packet_time = float(packet.time)
         dt = datetime.fromtimestamp(packet_time)
         timestamp = dt.strftime("%H:%M:%S.%f")
         tcp_flags = "N/A"
