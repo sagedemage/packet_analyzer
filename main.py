@@ -23,7 +23,7 @@ def open_pcapng_file():
     packet_analyzer.get_data_of_pcapng_file(pcapng_file_path)
 
 def main():
-    if len(sys.argv) > 0:
+    if len(sys.argv) > 1:
         flag = sys.argv[1]
         print(flag)
 
