@@ -6,7 +6,6 @@ name = "pypi"
 [packages]
 scapy = "*"
 cryptography = "*"
-pyside6 = "*"
 
 [dev-packages]
 
