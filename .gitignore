@@ -1,1 +1,2 @@
 data/*.pcapng
+__pycache__/
