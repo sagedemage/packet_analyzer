@@ -3,7 +3,7 @@ name = "packet_analyzer"
 version = "0.1.0"
 description = ""
 authors = [
-    {name = "Salmaan Saeed",email = "salsaeed999@gmail.com"}
+    {name = "Salmaan Saeed"}
 ]
 readme = "README.md"
 requires-python = ">=3.13,<4"
